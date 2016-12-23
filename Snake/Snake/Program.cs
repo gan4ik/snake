@@ -11,9 +11,35 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            Console.SetBufferSize(80, 25);
+            VerticalLine vl = new VerticalLine(0, 10, 5, '%');
+            Draw(vl);
 
-            //Отрисовка рамочки
+            Point p = new Point(4, 5, '*');
+            Figure fSnake = new Snake(p, 4, Direction.RIGHT);
+            Draw(fSnake);
+            Snake snake = (Snake)fSnake;
+            
+            HorizontalLine hl = new HorizontalLine(0, 5, 6, '&');
+
+            List<Figure> figures = new List<Figure>();
+            figures.Add(fSnake);
+            figures.Add(vl);
+            figures.Add(hl);
+
+            foreach (var f in figures)
+            {
+                f.Draw();
+            }
+        }
+
+            static void Draw(Figure figure)
+            {
+                figure.Draw();
+            }
+
+            //Console.SetBufferSize(80, 25);
+
+            /*Отрисовка рамочки
             HorizontalLine upLine = new HorizontalLine(0, 78, 0, '+');
             HorizontalLine downLine = new HorizontalLine(0, 78, 24, '+');
             VerticalLine leftLine = new VerticalLine(0, 24, 0, '+');
@@ -26,7 +52,7 @@ namespace Snake
             // Отрисовка точек
             Point p = new Point(4, 5, '*');
             Snake snake = new Snake(p, 4, Direction.RIGHT);
-            snake.Draw();
+            snake.Draw();*/
 
             FoodCreator foodCreator = new FoodCreator(80, 25, '$');
             Point food = foodCreator.CreateFood();
